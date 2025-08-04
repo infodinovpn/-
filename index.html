@@ -3,179 +3,607 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DinoVPN</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Dino.VPN - Полное пользовательское соглашение</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background-color: #000000;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            border: 1px solid #333;
+            background-color: #111;
+            position: relative;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #333;
+        }
+        
+        h1 {
+            color: #fff;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            color: #fff;
+            font-size: 28px;
+            margin-top: 50px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #fff;
+            font-size: 22px;
+            margin-top: 35px;
+        }
+        
+        h4 {
+            color: #ddd;
+            font-size: 18px;
+            margin-top: 25px;
+        }
+        
+        p, li {
+            color: #ccc;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .meta {
+            color: #999;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .highlight {
+            background-color: #222;
+            padding: 25px;
+            border-left: 4px solid #555;
+            margin: 25px 0;
+        }
+        
+        ol, ul {
+            padding-left: 30px;
+            margin-bottom: 25px;
+        }
+        
+        li {
+            margin-bottom: 15px;
+        }
+        
+        a {
+            color: #aaa;
+            text-decoration: underline;
+        }
+        
+        a:hover {
+            color: #fff;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 2px solid #333;
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .editor-tools {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #222;
+            padding: 15px;
+            border: 2px solid #444;
+            z-index: 1000;
+            border-radius: 5px;
+        }
+        
+        .editable {
+            outline: 1px dashed transparent;
+            transition: outline 0.2s;
+            padding: 3px;
+            margin: 5px 0;
+        }
+        
+        .editable:hover {
+            outline: 1px dashed #666;
+        }
+        
+        .editable:focus {
+            outline: 2px solid #888;
+            background: #333;
+        }
+        
+        .save-btn {
+            background: #444;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+        
+        .save-btn:hover {
+            background: #555;
+        }
+        
+        .admin-notice {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .toc {
+            background: #222;
+            padding: 25px;
+            margin-bottom: 40px;
+            border-radius: 5px;
+        }
+        
+        .toc h3 {
+            margin-top: 0;
+        }
+        
+        .toc ul {
+            columns: 2;
+            column-gap: 40px;
+        }
+        
+        .note {
+            background: #2a2a2a;
+            border-left: 4px solid #777;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .password-prompt {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #222;
+            padding: 30px;
+            border: 2px solid #444;
+            z-index: 1001;
+            text-align: center;
+            border-radius: 5px;
+            width: 300px;
+        }
+        
+        .password-input {
+            background: #333;
+            border: 1px solid #555;
+            color: white;
+            padding: 10px;
+            margin: 15px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
-    <div class="app-container">
-        <!-- Главный экран -->
-        <div id="mainScreen" class="screen active">
-            <div class="screen-header">
-                <button class="icon-button left hidden"><i class="fas fa-cog"></i></button>
-                <h2>DinoVPN</h2>
-                <button class="icon-button right" onclick="showScreen('settingsScreen')"><i class="fas fa-cog"></i></button>
-            </div>
-            <div class="screen-content">
-                <p class="status-text" id="mainStatusText">Не подключено</p>
-
-                <div class="connection-button disconnected" id="connectionButton">
-                    <i class="fas fa-power-off power-icon"></i>
-                    <div class="connection-ring"></div>
-                </div>
-                
-                <div class="subscription-info">
-                    Подписка действует: <span id="subscriptionDays">7</span> дней
-                </div>
-                <p class="subscription-ended" id="subscriptionEndedText" style="display: none;">
-                    Ваша подписка закончилась. Продлите для продолжения использования.
-                </p>
-                
-                <div class="traffic-info">
-                    <div class="traffic-item">
-                        <i class="fas fa-arrow-down"></i>
-                        <div class="traffic-data">
-                            Получено <br> <span id="receivedData">0 B</span>
-                        </div>
-                    </div>
-                    <div class="traffic-item">
-                        <i class="fas fa-arrow-up"></i>
-                        <div class="traffic-data">
-                            Отправлено <br> <span id="sentData">0 B</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="location-info">
-                    <p id="currentLocationText">Выбрано: <strong>Автоматически</strong></p>
-                    <button class="change-location-btn" onclick="showScreen('serversScreen')">Изменить местоположение</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Экран выбора серверов -->
-        <div id="serversScreen" class="screen">
-            <div class="screen-header">
-                <button class="icon-button left" onclick="showScreen('mainScreen')"><i class="fas fa-chevron-left"></i></button>
-                <h2>Серверы</h2>
-                <button class="icon-button right hidden"><i class="fas fa-chevron-left"></i></button>
-            </div>
-            <div class="screen-content">
-                <input type="text" id="searchBar" class="search-bar" placeholder="Поиск стран или городов...">
-                <ul class="server-list" id="serverList">
-                    <!-- Список серверов будет сгенерирован JS -->
-                </ul>
-            </div>
-        </div>
-
-        <!-- Экран настроек -->
-        <div id="settingsScreen" class="screen">
-            <div class="screen-header">
-                <button class="icon-button left" onclick="showScreen('mainScreen')"><i class="fas fa-chevron-left"></i></button>
-                <h2>Настройки</h2>
-                <button class="icon-button right hidden"><i class="fas fa-chevron-left"></i></button>
-            </div>
-            <div class="screen-content">
-                <div class="settings-section">
-                    <h3 class="settings-title">Основные</h3>
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <i class="fas fa-bell setting-icon"></i>
-                            <span>Уведомления</span>
-                        </div>
-                        <label class="switch">
-                            <input type="checkbox" id="notificationsToggle" checked>
-                            <span class="slider round"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <i class="fas fa-moon setting-icon"></i>
-                            <span>Темная тема</span>
-                        </div>
-                        <label class="switch">
-                            <input type="checkbox" id="darkThemeToggle">
-                            <span class="slider round"></span>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="settings-section">
-                    <h3 class="settings-title">Безопасность</h3>
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <i class="fas fa-shield-alt setting-icon"></i>
-                            <span>Автозащита</span>
-                        </div>
-                        <label class="switch">
-                            <input type="checkbox" id="autoProtectionToggle">
-                            <span class="slider round"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <i class="fas fa-lock setting-icon"></i>
-                            <span>Защита от утечек</span>
-                        </div>
-                        <label class="switch">
-                            <input type="checkbox" id="leakProtectionToggle" checked>
-                            <span class="slider round"></span>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="settings-section">
-                    <h3 class="settings-title">О приложении</h3>
-                    <div class="setting-item no-switch">
-                        <div class="setting-info">
-                            <i class="fas fa-info-circle setting-icon"></i>
-                            <span>Версия 1.0.0</span>
-                        </div>
-                    </div>
-                    
-                    <div class="setting-item no-switch" id="privacyPolicyBtn">
-                        <div class="setting-info">
-                            <i class="fas fa-file-alt setting-icon"></i>
-                            <span>Политика конфиденциальности</span>
-                        </div>
-                    </div>
-                    
-                    <div class="setting-item no-switch" id="helpSupportBtn">
-                        <div class="setting-info">
-                            <i class="fas fa-question-circle setting-icon"></i>
-                            <span>Помощь и поддержка</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="signature">
-                    @dinovpnn
-                </div>
-            </div>
-        </div>
-
-        <!-- Нижняя навигация -->
-        <div class="bottom-nav">
-            <a href="#" class="nav-item active" data-screen="mainScreen">
-                <i class="fas fa-home"></i>
-                Главная
-            </a>
-            <a href="#" class="nav-item" data-screen="serversScreen">
-                <i class="fas fa-server"></i>
-                Серверы
-            </a>
-            <a href="#" class="nav-item" data-screen="settingsScreen">
-                <i class="fas fa-cog"></i>
-                Настройки
-            </a>
-        </div>
+    <!-- Панель ввода пароля -->
+    <div class="password-prompt" id="passwordPrompt">
+        <h3 style="color:white;margin-top:0;">Доступ редактора</h3>
+        <p>Введите пароль для редактирования:</p>
+        <input type="password" class="password-input" id="passwordInput" placeholder="Пароль">
+        <button class="save-btn" id="passwordSubmit" style="width:100%;">Продолжить</button>
+        <div id="passwordError" style="color:#f44336;font-size:14px;margin-top:10px;"></div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Панель инструментов редактора -->
+    <div class="editor-tools" id="editorTools">
+        <h3 style="color:white;margin-top:0;font-size:20px;">Редактор контента</h3>
+        <button class="save-btn" id="saveBtn">Сохранить все изменения</button>
+        <div id="statusMessage" style="color:#aaa;font-size:14px;margin-top:10px;"></div>
+    </div>
+
+    <div class="container" id="contentContainer">
+        <header>
+            <h1 class="editable" data-id="title">ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ Dino.VPN</h1>
+            <div class="meta editable" data-id="meta">
+                (Telegram: @dinovpnn) August 04, 2025<br>
+                Последняя редакция: 04.08.2025<br>
+                Действует с: 04.08.2025<br>
+                Версия документа: 3.14.15
+            </div>
+        </header>
+        
+        <div class="toc editable" data-id="toc">
+            <h3>СОДЕРЖАНИЕ</h3>
+            <ul>
+                <li><a href="#section1">1. Определения</a></li>
+                <li><a href="#section2">2. Общие положения</a></li>
+                <li><a href="#section3">3. Условия предоставления услуг</a></li>
+                <li><a href="#section4">4. Обязанности пользователя</a></li>
+                <li><a href="#section5">5. Обязанности сервиса</a></li>
+                <li><a href="#section6">6. Ограничения использования</a></li>
+                <li><a href="#section7">7. Конфиденциальность и защита данных</a></li>
+                <li><a href="#section8">8. Интеллектуальная собственность</a></li>
+                <li><a href="#section9">9. Оплата и возвраты</a></li>
+                <li><a href="#section10">10. Прекращение действия</a></li>
+                <li><a href="#section11">11. Гарантии и ответственность</a></li>
+                <li><a href="#section12">12. Изменение условий</a></li>
+                <li><a href="#section13">13. Разрешение споров</a></li>
+                <li><a href="#section14">14. Заключительные положения</a></li>
+            </ul>
+        </div>
+        
+        <div class="highlight editable" data-id="intro">
+            <p>Настоящее Пользовательское соглашение (далее — "Соглашение") регулирует отношения между Dino.VPN (далее — "Сервис", "Мы", "Нас") и пользователем (далее — "Пользователь", "Вы", "Ваш") в связи с использованием VPN-услуг, предоставляемых через Telegram-бот @dinovpnnn и связанные сервисы.</p>
+            
+            <p>Перед использованием Dino.VPN внимательно ознакомьтесь с условиями данного Соглашения. Начиная использование Сервиса, Вы подтверждаете, что полностью принимаете его условия. Если Вы не согласны с каким-либо пунктом, Вы обязаны немедленно прекратить использование Dino.VPN.</p>
+            
+            <div class="note editable" data-id="important_note">
+                <p><strong>Важно:</strong> Использование VPN-сервисов может регулироваться законодательством вашей страны. Вы самостоятельно несете ответственность за соблюдение местных законов при использовании нашего сервиса.</p>
+            </div>
+        </div>
+        
+        <!-- Раздел 1 -->
+        <div class="section" id="section1">
+            <h2 class="editable" data-id="section1_title">1. ОПРЕДЕЛЕНИЯ</h2>
+            
+            <h3 class="editable" data-id="section1_1_title">1.1 Dino.VPN</h3>
+            <p class="editable" data-id="section1_1_content">— сервис предоставления VPN-услуг, доступный через Telegram-бота @dinovpnnn, а также связанные веб-ресурсы и приложения, включая все версии программного обеспечения, веб-сайты, серверную инфраструктуру и сопутствующие технологии, разработанные и поддерживаемые командой Dino.VPN.</p>
+            
+            <h3 class="editable" data-id="section1_2_title">1.2 Пользователь</h3>
+            <p class="editable" data-id="section1_2_content">— физическое или юридическое лицо, зарегистрировавшееся или использующее Dino.VPN в личных или коммерческих целях, прошедшее процедуру идентификации (если таковая предусмотрена) и принявшее условия настоящего Соглашения. Пользователем также считается любое лицо, осуществляющее доступ к сервису через устройства или учетные записи, зарегистрированные пользователем.</p>
+            
+            <h3 class="editable" data-id="section1_3_title">1.3 VPN (Virtual Private Network)</h3>
+            <p class="editable" data-id="section1_3_content">— технология, обеспечивающая зашифрованное соединение между устройством Пользователя и сервером Dino.VPN, создающая защищенный туннель для передачи данных, изменяющая видимый IP-адрес пользователя и обеспечивающая дополнительные уровни безопасности и конфиденциальности при работе в сети Интернет.</p>
+            
+            <h3 class="editable" data-id="section1_4_title">1.4 Telegram @dinovpnn</h3>
+            <p class="editable" data-id="section1_4_content">— официальный канал связи и управления подписками Dino.VPN, включая бота для управления услугами, технической поддержки, рассылки уведомлений и иных форм коммуникации между сервисом и пользователями.</p>
+            
+            <h3 class="editable" data-id="section1_5_title">1.5 Учетная запись</h3>
+            <p class="editable" data-id="section1_5_content">— уникальная идентификационная запись пользователя в системе Dino.VPN, создаваемая в процессе регистрации через Telegram-бота или иным способом, предусмотренным сервисом, содержащая персональные данные пользователя, историю использования услуг, настройки и иные параметры.</p>
+            
+            <h3 class="editable" data-id="section1_6_title">1.6 Подписка</h3>
+            <p class="editable" data-id="section1_6_content">— платный доступ к услугам Dino.VPN на определенный срок (1 месяц, 3 месяца, 1 год или иные периоды, предлагаемые сервисом), активируемый после успешной оплаты и предоставляющий полный или ограниченный (в зависимости от тарифного плана) доступ к функционалу сервиса.</p>
+            
+            <h3 class="editable" data-id="section1_7_title">1.7 Серверы Dino.VPN</h3>
+            <p class="editable" data-id="section1_7_content">— физические или виртуальные серверы, расположенные в различных юрисдикциях и используемые сервисом для предоставления VPN-услуг, включая все связанное с ними программное обеспечение, сетевую инфраструктуру и системы хранения данных.</p>
+        </div>
+        
+        <!-- Раздел 2 -->
+        <div class="section" id="section2">
+            <h2 class="editable" data-id="section2_title">2. ОБЩИЕ ПОЛОЖЕНИЯ</h2>
+            
+            <h3 class="editable" data-id="section2_1_title">2.1 Предмет соглашения</h3>
+            <p class="editable" data-id="section2_1_content">2.1.1. Настоящее Соглашение регулирует отношения между Dino.VPN и Пользователем в связи с предоставлением и использованием услуг виртуальной частной сети (VPN).</p>
+            <p class="editable" data-id="section2_1_content2">2.1.2. Сервис предоставляет технологическую платформу для создания зашифрованных соединений между устройством пользователя и серверами Dino.VPN, но не контролирует, не цензурирует и не несет ответственности за контент, передаваемый через эти соединения.</p>
+            <p class="editable" data-id="section2_1_content3">2.1.3. Использование сервиса возможно только после полного и безоговорочного принятия условий настоящего Соглашения.</p>
+            
+            <h3 class="editable" data-id="section2_2_title">2.2 Изменения условий</h3>
+            <p class="editable" data-id="section2_2_content">2.2.1. Мы оставляем за собой право в одностороннем порядке изменять условия настоящего Соглашения в любое время.</p>
+            <p class="editable" data-id="section2_2_content2">2.2.2. Все изменения вступают в силу с момента их публикации на официальных ресурсах Dino.VPN.</p>
+            <p class="editable" data-id="section2_2_content3">2.2.3. Продолжение использования сервиса после внесения изменений означает согласие пользователя с новыми условиями.</p>
+            
+            <h3 class="editable" data-id="section2_3_title">2.3 Возрастные ограничения</h3>
+            <p class="editable" data-id="section2_3_content">2.3.1. Сервис предназначен для пользователей, достигших возраста 18 лет.</p>
+            <p class="editable" data-id="section2_3_content2">2.3.2. Лица младше 18 лет могут использовать сервис только с согласия родителей или законных опекунов.</p>
+            
+            <h3 class="editable" data-id="section2_4_title">2.4 Юрисдикция</h3>
+            <p class="editable" data-id="section2_4_content">2.4.1. Сервис Dino.VPN не привязан к конкретной юрисдикции и действует в соответствии с принципами, изложенными в данном Соглашении.</p>
+            <p class="editable" data-id="section2_4_content2">2.4.2. Пользователь самостоятельно несет ответственность за соответствие использования сервиса законодательству своей страны.</p>
+            
+            <h3 class="editable" data-id="section2_5_title">2.5 Язык соглашения</h3>
+            <p class="editable" data-id="section2_5_content">2.5.1. Оригинальным языком настоящего Соглашения является русский.</p>
+            <p class="editable" data-id="section2_5_content2">2.5.2. В случае расхождений между русской версией и переводами приоритет имеет русская версия.</p>
+        </div>
+        
+        <!-- Раздел 3 -->
+        <div class="section" id="section3">
+            <h2 class="editable" data-id="section3_title">3. УСЛОВИЯ ПРЕДОСТАВЛЕНИЯ УСЛУГ</h2>
+            
+            <h3 class="editable" data-id="section3_1_title">3.1 Регистрация</h3>
+            <p class="editable" data-id="section3_1_content">3.1.1. Для доступа к полному функционалу сервиса требуется регистрация через Telegram-бота @dinovpnn.</p>
+            <p class="editable" data-id="section3_1_content2">3.1.2. При регистрации пользователь обязан предоставить достоверную и актуальную информацию.</p>
+            <p class="editable" data-id="section3_1_content3">3.1.3. Один пользователь может создать только одну учетную запись, если иное не согласовано с администрацией сервиса.</p>
+            
+            <h3 class="editable" data-id="section3_2_title">3.2 Технические требования</h3>
+            <p class="editable" data-id="section3_2_content">3.2.1. Для работы сервиса требуется устройство с доступом в интернет и поддержкой VPN-соединений.</p>
+            <p class="editable" data-id="section3_2_content2">3.2.2. Минимальные системные требования могут изменяться в зависимости от версии сервиса.</p>
+            <p class="editable" data-id="section3_2_content3">3.2.3. Пользователь несет ответственность за совместимость своего оборудования и программного обеспечения с сервисом Dino.VPN.</p>
+            
+            <h3 class="editable" data-id="section3_3_title">3.3 Доступность сервиса</h3>
+            <p class="editable" data-id="section3_3_content">3.3.1. Мы стремимся обеспечить круглосуточную доступность сервиса, но не гарантируем бесперебойную работу.</p>
+            <p class="editable" data-id="section3_3_content2">3.3.2. Технические работы могут проводиться без предварительного уведомления.</p>
+            <p class="editable" data-id="section3_3_content3">3.3.3. Сервис может быть временно недоступен по причинам, не зависящим от нас (проблемы у интернет-провайдеров, хостинг-компаний и т.д.).</p>
+            
+            <h3 class="editable" data-id="section3_4_title">3.4 Бесплатный и платный доступ</h3>
+            <p class="editable" data-id="section3_4_content">3.4.1. Сервис может предоставлять как бесплатные, так и платные тарифные планы.</p>
+            <p class="editable" data-id="section3_4_content2">3.4.2. Бесплатный доступ может иметь ограничения по скорости, объему трафика, количеству серверов и другим параметрам.</p>
+            <p class="editable" data-id="section3_4_content3">3.4.3. Условия бесплатного доступа могут изменяться в любое время без предварительного уведомления.</p>
+        </div>
+        
+        <!-- Раздел 4 -->
+        <div class="section" id="section4">
+            <h2 class="editable" data-id="section4_title">4. ОБЯЗАННОСТИ ПОЛЬЗОВАТЕЛЯ</h2>
+            
+            <h3 class="editable" data-id="section4_1_title">4.1 Законопослушное использование</h3>
+            <p class="editable" data-id="section4_1_content">4.1.1. Пользователь обязуется использовать сервис исключительно в законных целях.</p>
+            <p class="editable" data-id="section4_1_content2">4.1.2. Запрещено использование сервиса для распространения вредоносного ПО, организации атак, распространения нелегального контента.</p>
+            <p class="editable" data-id="section4_1_content3">4.1.3. Пользователь несет полную ответственность за все действия, совершенные с использованием его учетной записи.</p>
+            
+            <h3 class="editable" data-id="section4_2_title">4.2 Конфиденциальность учетных данных</h3>
+            <p class="editable" data-id="section4_2_content">4.2.1. Пользователь несет ответственность за сохранность своих учетных данных.</p>
+            <p class="editable" data-id="section4_2_content2">4.2.2. Запрещена передача учетной записи третьим лицам.</p>
+            <p class="editable" data-id="section4_2_content3">4.2.3. В случае утери данных для входа пользователь должен немедленно уведомить службу поддержки.</p>
+            
+            <h3 class="editable" data-id="section4_3_title">4.3 Соблюдение правил</h3>
+            <p class="editable" data-id="section4_3_content">4.3.1. Пользователь обязуется соблюдать все условия настоящего Соглашения.</p>
+            <p class="editable" data-id="section4_3_content2">4.3.2. Запрещается любое использование сервиса, которое может нанести ущерб Dino.VPN или другим пользователям.</p>
+        </div>
+        
+        <!-- Раздел 5 -->
+        <div class="section" id="section5">
+            <h2 class="editable" data-id="section5_title">5. ОБЯЗАННОСТИ СЕРВИСА</h2>
+            
+            <h3 class="editable" data-id="section5_1_title">5.1 Предоставление услуг</h3>
+            <p class="editable" data-id="section5_1_content">5.1.1. Сервис обязуется предоставлять VPN-услуги в соответствии с условиями настоящего Соглашения.</p>
+            <p class="editable" data-id="section5_1_content2">5.1.2. Мы прилагаем все разумные усилия для обеспечения стабильной работы сервиса.</p>
+            
+            <h3 class="editable" data-id="section5_2_title">5.2 Конфиденциальность</h3>
+            <p class="editable" data-id="section5_2_content">5.2.1. Сервис предпринимает меры для защиты персональных данных пользователей.</p>
+            <p class="editable" data-id="section5_2_content2">5.2.2. Мы не храним логи активности пользователей в сети.</p>
+        </div>
+        
+        <!-- Раздел 6 -->
+        <div class="section" id="section6">
+            <h2 class="editable" data-id="section6_title">6. ОГРАНИЧЕНИЯ ИСПОЛЬЗОВАНИЯ</h2>
+            
+            <h3 class="editable" data-id="section6_1_title">6.1 Запрещенные действия</h3>
+            <p class="editable" data-id="section6_1_content">6.1.1. Запрещается использовать сервис для:</p>
+            <ul class="editable" data-id="section6_1_list">
+                <li>Распространения вредоносного ПО</li>
+                <li>Организации DDoS-атак</li>
+                <li>Распространения нелегального контента</li>
+                <li>Спама и фишинга</li>
+                <li>Любых других незаконных действий</li>
+            </ul>
+            
+            <h3 class="editable" data-id="section6_2_title">6.2 Технические ограничения</h3>
+            <p class="editable" data-id="section6_2_content">6.2.1. Сервис может устанавливать ограничения на:</p>
+            <ul class="editable" data-id="section6_2_list">
+                <li>Скорость соединения</li>
+                <li>Объем трафика</li>
+                <li>Количество одновременных подключений</li>
+            </ul>
+        </div>
+        
+        <!-- Раздел 7 -->
+        <div class="section" id="section7">
+            <h2 class="editable" data-id="section7_title">7. КОНФИДЕНЦИАЛЬНОСТЬ И ЗАЩИТА ДАННЫХ</h2>
+            
+            <h3 class="editable" data-id="section7_1_title">7.1 Сбор данных</h3>
+            <p class="editable" data-id="section7_1_content">7.1.1. Мы собираем минимально необходимые данные для работы сервиса.</p>
+            <p class="editable" data-id="section7_1_content2">7.1.2. Подробная информация изложена в Политике конфиденциальности.</p>
+            
+            <h3 class="editable" data-id="section7_2_title">7.2 Защита данных</h3>
+            <p class="editable" data-id="section7_2_content">7.2.1. Сервис использует современные методы шифрования для защиты данных.</p>
+        </div>
+        
+        <!-- Раздел 8 -->
+        <div class="section" id="section8">
+            <h2 class="editable" data-id="section8_title">8. ИНТЕЛЛЕКТУАЛЬНАЯ СОБСТВЕННОСТЬ</h2>
+            
+            <h3 class="editable" data-id="section8_1_title">8.1 Права на сервис</h3>
+            <p class="editable" data-id="section8_1_content">8.1.1. Все права на сервис Dino.VPN принадлежат его владельцам.</p>
+            <p class="editable" data-id="section8_1_content2">8.1.2. Запрещено любое копирование или воспроизведение элементов сервиса без разрешения.</p>
+        </div>
+        
+        <!-- Раздел 9 -->
+        <div class="section" id="section9">
+            <h2 class="editable" data-id="section9_title">9. ОПЛАТА И ВОЗВРАТЫ</h2>
+            
+            <h3 class="editable" data-id="section9_1_title">9.1 Условия оплаты</h3>
+            <p class="editable" data-id="section9_1_content">9.1.1. Оплата подписки производится через платежные системы, интегрированные в Telegram-бота.</p>
+            
+            <h3 class="editable" data-id="section9_2_title">9.2 Возврат средств</h3>
+            <p class="editable" data-id="section9_2_content">9.2.1. Возврат средств возможен в течение 14 дней с момента оплаты при условии неиспользования сервиса.</p>
+        </div>
+        
+        <!-- Раздел 10 -->
+        <div class="section" id="section10">
+            <h2 class="editable" data-id="section10_title">10. ПРЕКРАЩЕНИЕ ДЕЙСТВИЯ</h2>
+            
+            <h3 class="editable" data-id="section10_1_title">10.1 Прекращение доступа</h3>
+            <p class="editable" data-id="section10_1_content">10.1.1. Мы оставляем за собой право прекратить доступ к сервису в случае нарушения условий Соглашения.</p>
+        </div>
+        
+        <!-- Раздел 11 -->
+        <div class="section" id="section11">
+            <h2 class="editable" data-id="section11_title">11. ГАРАНТИИ И ОТВЕТСТВЕННОСТЬ</h2>
+            
+            <h3 class="editable" data-id="section11_1_title">11.1 Отказ от гарантий</h3>
+            <p class="editable" data-id="section11_1_content">11.1.1. Сервис предоставляется "как есть" без каких-либо гарантий.</p>
+        </div>
+        
+        <!-- Раздел 12 -->
+        <div class="section" id="section12">
+            <h2 class="editable" data-id="section12_title">12. ИЗМЕНЕНИЕ УСЛОВИЙ</h2>
+            
+            <h3 class="editable" data-id="section12_1_title">12.1 Порядок изменений</h3>
+            <p class="editable" data-id="section12_1_content">12.1.1. Мы оставляем за собой право изменять условия Соглашения в любое время.</p>
+        </div>
+        
+        <!-- Раздел 13 -->
+        <div class="section" id="section13">
+            <h2 class="editable" data-id="section13_title">13. РАЗРЕШЕНИЕ СПОРОВ</h2>
+            
+            <h3 class="editable" data-id="section13_1_title">13.1 Претензионный порядок</h3>
+            <p class="editable" data-id="section13_1_content">13.1.1. Все споры решаются путем переговоров.</p>
+        </div>
+        
+        <!-- Раздел 14 -->
+        <div class="section" id="section14">
+            <h2 class="editable" data-id="section14_title">14. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ</h2>
+            
+            <h3 class="editable" data-id="section14_1_title">14.1 Вступление в силу</h3>
+            <p class="editable" data-id="section14_1_content">14.1.1. Соглашение вступает в силу с момента его принятия пользователем.</p>
+        </div>
+        
+        <footer class="editable" data-id="footer">
+            <p>© 2025 Dino.VPN. Все права защищены.</p>
+            <p>Telegram: @dinovpnn | Последнее обновление: 04.08.2025 | Версия документа: 3.14.15</p>
+            <p>Для связи с юридическим отделом: legal@dinovpn.example</p>
+        </footer>
+    </div>
+
+    <script>
+        // Пароль редактора (можно изменить)
+        const EDITOR_PASSWORD = "dinovpn123";
+        // Ключ для хранения данных в localStorage
+        const STORAGE_KEY = "dino_vpn_agreement_data";
+        
+        // Функция загрузки сохраненных данных
+        function loadSavedData() {
+            const savedData = localStorage.getItem(STORAGE_KEY);
+            if (savedData) {
+                try {
+                    return JSON.parse(savedData);
+                } catch (e) {
+                    console.error("Ошибка при загрузке данных:", e);
+                    return null;
+                }
+            }
+            return null;
+        }
+        
+        // Функция применения сохраненных данных
+        function applySavedData(data) {
+            if (!data) return;
+            
+            Object.keys(data).forEach(id => {
+                const element = document.querySelector(`[data-id="${id}"]`);
+                if (element) {
+                    element.innerHTML = data[id];
+                }
+            });
+        }
+        
+        // Функция проверки пароля
+        function checkPassword() {
+            const passwordInput = document.getElementById('passwordInput').value;
+            if (passwordInput === EDITOR_PASSWORD) {
+                document.getElementById('passwordPrompt').style.display = 'none';
+                document.getElementById('editorTools').style.display = 'block';
+                document.body.insertAdjacentHTML('beforeend', '<div class="admin-notice">Режим редактора активен</div>');
+                
+                // Активировать редактирование контента
+                const editableElements = document.querySelectorAll('.editable');
+                
+                editableElements.forEach(element => {
+                    element.setAttribute('contenteditable', 'true');
+                    if (!element.dataset.original) {
+                        element.dataset.original = element.innerHTML;
+                    }
+                });
+                
+                document.getElementById('saveBtn').addEventListener('click', saveChanges);
+                return true;
+            } else {
+                document.getElementById('passwordError').textContent = 'Неверный пароль';
+                return false;
+            }
+        }
+        
+        // Функция сохранения изменений
+        function saveChanges() {
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.textContent = 'Сохранение...';
+            statusMessage.style.color = '#aaa';
+            
+            try {
+                // Собираем все изменения
+                const changes = {};
+                document.querySelectorAll('.editable').forEach(el => {
+                    changes[el.dataset.id] = el.innerHTML;
+                });
+                
+                // Сохраняем в localStorage
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(changes));
+                
+                // Обновляем дату в футере
+                const now = new Date();
+                const dateString = `${now.getDate()}.${now.getMonth()+1}.${now.getFullYear()}`;
+                const footerDate = document.querySelector('[data-id="footer"] p:nth-child(2)');
+                if (footerDate) {
+                    footerDate.innerHTML = `Telegram: @dinovpnn | Последнее обновление: ${dateString} | Версия документа: 3.14.15`;
+                    changes['footer'] = footerDate.innerHTML;
+                }
+                
+                // Сохраняем обновленные данные
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(changes));
+                
+                statusMessage.textContent = 'Изменения сохранены для всех пользователей!';
+                statusMessage.style.color = '#4CAF50';
+                
+            } catch (error) {
+                console.error('Ошибка при сохранении:', error);
+                statusMessage.textContent = 'Ошибка при сохранении: ' + error.message;
+                statusMessage.style.color = '#f44336';
+            }
+        }
+        
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            // Загружаем сохраненные данные
+            const savedData = loadSavedData();
+            if (savedData) {
+                applySavedData(savedData);
+            }
+            
+            // Проверяем, есть ли параметр ?edit в URL
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('edit')) {
+                document.getElementById('passwordPrompt').style.display = 'block';
+                document.getElementById('passwordSubmit').addEventListener('click', checkPassword);
+                document.getElementById('passwordInput').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') checkPassword();
+                });
+            }
+        });
+        
+        // Синхронизация между вкладками
+        window.addEventListener('storage', (event) => {
+            if (event.key === STORAGE_KEY) {
+                const savedData = JSON.parse(event.newValue);
+                applySavedData(savedData);
+            }
+        });
+    </script>
 </body>
 </html>
